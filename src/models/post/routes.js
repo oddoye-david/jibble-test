@@ -99,8 +99,8 @@ exports.register = (server, options, next) => {
     method: 'DELETE',
     path: '/api/posts/{postId}',
     config: {
-      description: 'Delte a Post',
-      notes: 'Deltes a specific Post',
+      description: 'Delete a Post',
+      notes: 'Deletes a specific Post',
       tags: ['api', 'posts'],
       handler: deletePost,
       validate: {

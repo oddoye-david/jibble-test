@@ -1,6 +1,6 @@
 'use strict';
 
-const { getRandomItems } = require('../../utils');
+const { getRandomItems } = require('../../src/utils');
 
 describe('#getRandomItems', () => {
   it('Should return an array of items', () => {

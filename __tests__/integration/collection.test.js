@@ -1,8 +1,8 @@
 'use strict';
 
-jest.mock('../../utils/json_placeholder');
+jest.mock('../../src/utils/json_placeholder');
 
-const server = require('../../server');
+const server = require('../../src/server');
 
 const DEFAULT_AUTHORISED_REQUEST = {
   headers: {

@@ -4,8 +4,9 @@
   "description": "Jibble Test",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "jest"
+    "start": "npm run compile && node dist/server.js",
+    "test": "jest",
+    "compile": "babel --out-dir dist src"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,11 @@
     "vision": "4.1.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "4.9.0",
     "eslint-config-airbnb": "16.0.0",
     "eslint-plugin-import": "2.7.0",

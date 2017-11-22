@@ -1,8 +1,8 @@
 'use strict';
 
-jest.mock('../../utils/json_placeholder');
+jest.mock('../../src/utils/json_placeholder');
 
-const server = require('../../server');
+const server = require('../../src/server');
 
 const DEFAULT_AUTHORISED_REQUEST = {
   headers: {
@@ -11,7 +11,7 @@ const DEFAULT_AUTHORISED_REQUEST = {
 };
 
 describe('Posts Endpoints', () => {
-  it('Should return 501 status code without an Authoriszation header', async () => {
+  it('Should return 501 status code without an Authorization header', async () => {
     const response = await server.inject({
       method: 'GET',
       url: '/api/posts',
