@@ -54,6 +54,7 @@ exports.register = (server, options, next) => {
       handler: createPost,
       validate: {
         payload: {
+          id: Joi.number().required(),
           userId: Joi.number().required(),
           title: Joi.string().required(),
           body: Joi.string().required(),
@@ -79,6 +80,7 @@ exports.register = (server, options, next) => {
           postId: Joi.string().required(),
         },
         payload: {
+          id: Joi.number().required(),
           userId: Joi.number().required(),
           title: Joi.string().required(),
           body: Joi.string().required(),

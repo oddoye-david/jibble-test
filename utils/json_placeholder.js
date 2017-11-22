@@ -20,7 +20,7 @@ module.exports = {
       throw new Error('Please provide an entity name');
     }
 
-    if (!entityId || typeof entityId !== 'number') {
+    if (!entityId) {
       throw new Error('Please provide an entity id');
     }
     const { data: entity } = await jsonPlaceholder.get(`/${entityName}/${entityId}`);
@@ -47,7 +47,7 @@ module.exports = {
       throw new Error('Please provide an updatedEntity');
     }
 
-    if (!entityId || typeof entityId !== 'number') {
+    if (!entityId) {
       throw new Error('Please provide an updatedEntity');
     }
 
@@ -60,7 +60,7 @@ module.exports = {
       throw new Error('Please provide an entity name');
     }
 
-    if (!entityId || typeof entityId !== 'number') {
+    if (!entityId) {
       throw new Error('Please provide an entity id');
     }
     await jsonPlaceholder.delete(`/${entityName}/${entityId}`);

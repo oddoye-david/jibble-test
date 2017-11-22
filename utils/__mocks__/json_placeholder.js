@@ -43,7 +43,6 @@ const entities = {
 
 module.exports = {
   async get(entityName) {
-    console.log('mock', entityName);
     if (!entityName) {
       throw new Error('Please provide an entity name');
     }
@@ -56,11 +55,12 @@ module.exports = {
       throw new Error('Please provide an entity name');
     }
 
-    if (!entityId || typeof entityId !== 'number') {
+    if (!entityId) {
       throw new Error('Please provide an entity id');
     }
 
-    return entities[entityName].find(x => x.id === entityId);
+
+    return entities[entityName].find(x => x.id == entityId);
   },
   async create(entityName, entity) {
     if (!entityName) {
@@ -70,7 +70,7 @@ module.exports = {
       throw new Error('Please provide an entity');
     }
 
-    return { foo: 'bar' };
+    return entity;
   },
   async update(entityName, entityId, updatedEntity) {
     if (!entityName) {
@@ -81,18 +81,18 @@ module.exports = {
       throw new Error('Please provide an updatedEntity');
     }
 
-    if (!entityId || typeof entityId !== 'number') {
+    if (!entityId) {
       throw new Error('Please provide an updatedEntity');
     }
 
-    return { foo: 'bar' };
+    return updatedEntity;
   },
   async deleteById(entityName, entityId) {
     if (!entityName) {
       throw new Error('Please provide an entity name');
     }
 
-    if (!entityId || typeof entityId !== 'number') {
+    if (!entityId) {
       throw new Error('Please provide an entity id');
     }
 
