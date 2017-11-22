@@ -111,9 +111,9 @@ server.register(plugins, (routesErr) => {
 
       console.log(`
       ==================================================
-      Server running on ${API_HOST}
+      Server running on ${API_HOST}:${PORT}
       ==================================================
-      Docs at ${API_HOST}/documentation
+      Docs at ${API_HOST}:${PORT}/documentation
       ==================================================
       `);
     });
