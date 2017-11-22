@@ -1,3 +1,5 @@
+'use strict';
+
 jest.mock('../../utils/json_placeholder');
 
 const server = require('../../server');
