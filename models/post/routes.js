@@ -17,6 +17,10 @@ exports.register = (server, options, next) => {
       notes: 'Returns all Posts',
       tags: ['api', 'posts'],
       handler: getPosts,
+      cache: process.env.CACHE_ON ? {
+        expiresIn: 30 * 1000,
+        privacy: 'private',
+      } : undefined,
     },
   });
 
@@ -33,6 +37,10 @@ exports.register = (server, options, next) => {
           postId: Joi.string().required(),
         },
       },
+      cache: process.env.CACHE_ON ? {
+        expiresIn: 30 * 1000,
+        privacy: 'private',
+      } : undefined,
     },
   });
 
@@ -51,6 +59,10 @@ exports.register = (server, options, next) => {
           body: Joi.string().required(),
         },
       },
+      cache: process.env.CACHE_ON ? {
+        expiresIn: 30 * 1000,
+        privacy: 'private',
+      } : undefined,
     },
   });
 
@@ -72,6 +84,10 @@ exports.register = (server, options, next) => {
           body: Joi.string().required(),
         },
       },
+      cache: process.env.CACHE_ON ? {
+        expiresIn: 30 * 1000,
+        privacy: 'private',
+      } : undefined,
     },
   });
 
@@ -88,6 +104,10 @@ exports.register = (server, options, next) => {
           postId: Joi.string().required(),
         },
       },
+      cache: process.env.CACHE_ON ? {
+        expiresIn: 30 * 1000,
+        privacy: 'private',
+      } : undefined,
     },
   });
 

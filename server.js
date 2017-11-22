@@ -94,24 +94,29 @@ const plugins = routeFilePaths.map((routeFile) => {
   return require(`${routePluginPath}`); // eslint-disable-line
 });
 
+
 // Load plugins and start server
 server.register(plugins, (routesErr) => {
   if (routesErr) {
     throw routesErr;
   }
 
-  // Start the server
-  server.start((serverStartErr) => {
-    if (serverStartErr) {
-      throw serverStartErr;
-    }
+  if (!module.parent) {
+    // Start the server
+    server.start((serverStartErr) => {
+      if (serverStartErr) {
+        throw serverStartErr;
+      }
 
-    console.log(`
+      console.log(`
       ==================================================
       Server running on ${API_HOST}
       ==================================================
       Docs at ${API_HOST}/documentation
       ==================================================
       `);
-  });
+    });
+  }
 });
+
+module.exports = server;

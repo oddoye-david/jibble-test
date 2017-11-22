@@ -1,19 +1,55 @@
 'use strict';
 
-const axios = require('axios');
-
-const jsonPlaceholder = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/',
-});
+const entities = {
+  users: [
+    {
+      id: 1,
+      name: 'Leanne Graham',
+      username: 'Bret',
+      email: 'Sincere@april.biz',
+      address: {
+        street: 'Kulas Light',
+        suite: 'Apt. 556',
+        city: 'Gwenborough',
+        zipcode: '92998-3874',
+        geo: {
+          lat: '-37.3159',
+          lng: '81.1496',
+        },
+      },
+      phone: '1-770-736-8031 x56442',
+      website: 'hildegard.org',
+      company: {
+        name: 'Romaguera-Crona',
+        catchPhrase: 'Multi-layered client-server neural-net',
+        bs: 'harness real-time e-markets',
+      },
+    },
+  ],
+  posts: [
+    {
+      userId: 1,
+      id: 1,
+      title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
+      body: 'quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto',
+    },
+  ],
+  albums: [{
+    userId: 1,
+    id: 1,
+    title: 'quidem molestiae enim',
+  }],
+};
 
 module.exports = {
   async get(entityName) {
+    console.log('mock', entityName);
     if (!entityName) {
       throw new Error('Please provide an entity name');
     }
-    const { data: entities } = await jsonPlaceholder.get(`/${entityName}`);
 
-    return entities;
+
+    return entities[entityName];
   },
   async getById(entityName, entityId) {
     if (!entityName) {
@@ -23,9 +59,8 @@ module.exports = {
     if (!entityId || typeof entityId !== 'number') {
       throw new Error('Please provide an entity id');
     }
-    const { data: entity } = await jsonPlaceholder.get(`/${entityName}/${entityId}`);
 
-    return entity;
+    return entities[entityName].find(x => x.id === entityId);
   },
   async create(entityName, entity) {
     if (!entityName) {
@@ -34,9 +69,8 @@ module.exports = {
     if (!entity || typeof entity !== 'object') {
       throw new Error('Please provide an entity');
     }
-    const { data: singleEntity } = await jsonPlaceholder.post(`/${entity}`, { ...entity });
 
-    return singleEntity;
+    return { foo: 'bar' };
   },
   async update(entityName, entityId, updatedEntity) {
     if (!entityName) {
@@ -51,9 +85,7 @@ module.exports = {
       throw new Error('Please provide an updatedEntity');
     }
 
-    const { data: entity } = await jsonPlaceholder.patch(`/${entityName}/${entityId}`, { ...updatedEntity });
-
-    return entity;
+    return { foo: 'bar' };
   },
   async deleteById(entityName, entityId) {
     if (!entityName) {
@@ -63,7 +95,6 @@ module.exports = {
     if (!entityId || typeof entityId !== 'number') {
       throw new Error('Please provide an entity id');
     }
-    await jsonPlaceholder.delete(`/${entityName}/${entityId}`);
 
     return true;
   },

@@ -11,6 +11,10 @@ exports.register = (server, options, next) => {
       notes: 'Returns Collection',
       tags: ['api', 'collection'],
       handler: getCollection,
+      cache: process.env.CACHE_ON ? {
+        expiresIn: 30 * 1000,
+        privacy: 'private',
+      } : undefined,
     },
   });
 
