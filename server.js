@@ -19,7 +19,7 @@ const server = new Hapi.Server();
 // The connection object takes some
 // configuration, including the port and CORS headers
 server.connection({
-  port: PORT,
+  port: PORT || 3000,
   routes: {
     cors: {
       origin: ['*'],
@@ -63,7 +63,7 @@ const swaggerOptions = {
   },
   basePath: '/api',
   pathPrefixSize: 2,
-  host: process.env.API_HOST,
+  host: `${API_HOST}:${PORT}`,
 };
 
 /**
