@@ -11,6 +11,13 @@ const {
 } = require('../../utils/json_placeholder');
 
 module.exports = {
+  /**
+   * Get all Posts
+   *
+   * @param {Func} request
+   * @param {Func} response
+   * @returns Response
+   */
   async getPosts(request, response) {
     try {
       const posts = await get('posts');
@@ -20,6 +27,13 @@ module.exports = {
       return response(Boom.badImplementation('Unable to get posts'));
     }
   },
+  /**
+   * Get a Post using it's ID
+   *
+   * @param {Func} request
+   * @param {Func} response
+   * @returns Response
+   */
   async getPost(request, response) {
     const { postId } = request.params;
 
@@ -31,6 +45,13 @@ module.exports = {
       return response(Boom.badImplementation('Unable to get post'));
     }
   },
+  /**
+   * Create a Post
+   *
+   * @param {Func} request
+   * @param {Func} response
+   * @returns Response
+   */
   async createPost(request, response) {
     const post = { ...request.payload };
 
@@ -42,7 +63,13 @@ module.exports = {
       return response(Boom.badImplementation('Unable to create post'));
     }
   },
-
+  /**
+   * Update a Post
+   *
+   * @param {Func} request
+   * @param {Func} response
+   * @returns Response
+   */
   async updatePost(request, response) {
     const post = { ...request.payload };
     const { postId } = request.params;
@@ -55,6 +82,13 @@ module.exports = {
       return response(Boom.badImplementation('Unable to update post'));
     }
   },
+  /**
+   * Delete a Post
+   *
+   * @param {Func} request
+   * @param {Func} response
+   * @returns Response
+   */
   async deletePost(request, response) {
     const { postId } = request.params;
 

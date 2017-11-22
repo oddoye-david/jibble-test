@@ -17,7 +17,7 @@ const { PORT, API_HOST, VALID_JWT } = require('./config');
 const server = new Hapi.Server();
 
 // The connection object takes some
-// configuration, including the port
+// configuration, including the port and CORS headers
 server.connection({
   port: PORT,
   routes: {
@@ -86,8 +86,8 @@ server.register(
 );
 
 // Look through the routes in
-// all the subdirectories of API
-// and create a new route for each
+// all the subdirectories of models directory
+// and create a new route for each routes file
 const routeFilePaths = glob.sync('models/**/routes.js', { cwd: __dirname });
 const plugins = routeFilePaths.map((routeFile) => {
   const routePluginPath = path.join(__dirname, routeFile);
@@ -101,6 +101,7 @@ server.register(plugins, (routesErr) => {
     throw routesErr;
   }
 
+  // If server is being imported, ie for tests, don't start
   if (!module.parent) {
     // Start the server
     server.start((serverStartErr) => {

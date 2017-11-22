@@ -7,6 +7,12 @@ const jsonPlaceholder = axios.create({
 });
 
 module.exports = {
+  /**
+   * Runs a GET for entity ('/entityName')
+   *
+   * @param {String} entityName
+   * @returns Promise
+   */
   async get(entityName) {
     if (!entityName) {
       throw new Error('Please provide an entity name');
@@ -15,6 +21,13 @@ module.exports = {
 
     return entities;
   },
+  /**
+   * Runs a GET for entity ('/entityName/entityId')
+   *
+   * @param {String} entityName
+   * @param {String} entityId
+   * @returns Promise
+   */
   async getById(entityName, entityId) {
     if (!entityName) {
       throw new Error('Please provide an entity name');
@@ -27,6 +40,13 @@ module.exports = {
 
     return entity;
   },
+  /**
+   * Runs a POST for entity ('/entityName')
+   *
+   * @param {String} entityName
+   * @param {Object} entity
+   * @returns Promise
+   */
   async create(entityName, entity) {
     if (!entityName) {
       throw new Error('Please provide an entity name');
@@ -38,6 +58,14 @@ module.exports = {
 
     return singleEntity;
   },
+  /**
+   * Runs a PUT for entity ('/entityName/entityId')
+   *
+   * @param {String} entityName
+   * @param {String} entityId
+   * @param {Object} updatedEntity
+   * @returns Promise
+   */
   async update(entityName, entityId, updatedEntity) {
     if (!entityName) {
       throw new Error('Please provide an entity name');
@@ -55,6 +83,13 @@ module.exports = {
 
     return entity;
   },
+  /**
+   * Runs a DELETE for entity ('/entityName/entityId')
+   *
+   * @param {String} entityName
+   * @param {String} entityId
+   * @returns Promise
+   */
   async deleteById(entityName, entityId) {
     if (!entityName) {
       throw new Error('Please provide an entity name');
