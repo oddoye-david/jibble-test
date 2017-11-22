@@ -1,5 +1,13 @@
 const Joi = require('joi');
 
+const {
+  getPosts,
+  getPost,
+  createPost,
+  updatePost,
+  deletePost,
+} = require('./controller');
+
 exports.register = (server, options, next) => {
   server.route({
     method: 'GET',
@@ -8,9 +16,7 @@ exports.register = (server, options, next) => {
       description: 'Get Posts',
       notes: 'Returns all Posts',
       tags: ['api', 'posts'],
-      handler: (_, response) => {
-        response();
-      },
+      handler: getPosts,
     },
   });
 
@@ -21,9 +27,7 @@ exports.register = (server, options, next) => {
       description: 'Get Post',
       notes: 'Returns a specific Post',
       tags: ['api', 'posts'],
-      handler: (_, response) => {
-        response();
-      },
+      handler: getPost,
       validate: {
         params: {
           postId: Joi.string().required(),
@@ -39,12 +43,12 @@ exports.register = (server, options, next) => {
       description: 'Create a Post',
       notes: 'Creates a Post',
       tags: ['api', 'posts'],
-      handler: (_, response) => {
-        response();
-      },
+      handler: createPost,
       validate: {
         payload: {
+          userId: Joi.number().required(),
           title: Joi.string().required(),
+          body: Joi.string().required(),
         },
       },
     },
@@ -57,15 +61,15 @@ exports.register = (server, options, next) => {
       description: 'Update a Post',
       notes: 'Updates a specific Post',
       tags: ['api', 'posts'],
-      handler: (_, response) => {
-        response();
-      },
+      handler: updatePost,
       validate: {
         params: {
           postId: Joi.string().required(),
         },
         payload: {
-          title: Joi.string(),
+          userId: Joi.number().required(),
+          title: Joi.string().required(),
+          body: Joi.string().required(),
         },
       },
     },
@@ -78,9 +82,7 @@ exports.register = (server, options, next) => {
       description: 'Delte a Post',
       notes: 'Deltes a specific Post',
       tags: ['api', 'posts'],
-      handler: (_, response) => {
-        response();
-      },
+      handler: deletePost,
       validate: {
         params: {
           postId: Joi.string().required(),

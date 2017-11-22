@@ -11,7 +11,7 @@ const Boom = require('boom');
 const path = require('path');
 const glob = require('glob');
 
-const { PORT, API_HOST, VALID_JWT } = require('./config/constants');
+const { PORT, API_HOST, VALID_JWT } = require('./config');
 
 /* Initialise Server */
 const server = new Hapi.Server();

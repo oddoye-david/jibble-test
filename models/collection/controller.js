@@ -3,17 +3,12 @@
 const Boom = require('boom');
 const { getRandomNumber } = require('../../utils');
 const { get } = require('../../utils/json_placeholder');
-
-const MAX_SIZES = {
-  POSTS: 100,
-  USERS: 10,
-  ALBUMS: 100,
-};
+const { MAX_POSTS_SIZE, MAX_ALBUMS_SIZE } = require('../../config');
 
 module.exports = {
   async getCollection(request, response) {
-    const startingIndexForPosts = getRandomNumber(MAX_SIZES.POSTS - 30);
-    const startingIndexForAlbums = getRandomNumber(MAX_SIZES.ALBUMS - 30);
+    const startingIndexForPosts = getRandomNumber((MAX_POSTS_SIZE || 100) - 30);
+    const startingIndexForAlbums = getRandomNumber((MAX_ALBUMS_SIZE || 100) - 30);
 
     const promises = [get('posts'), get('albums'), get('users')];
     try {

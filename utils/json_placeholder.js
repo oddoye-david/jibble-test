@@ -17,7 +17,7 @@ module.exports = {
 
     return entity;
   },
-  async create(entity) {
+  async create(entityName, entity) {
     const { data: singleEntity } = await jsonPlaceholder.post(`/${entity}`, { ...entity });
 
     return singleEntity;
@@ -27,7 +27,7 @@ module.exports = {
 
     return entity;
   },
-  async delete(entityName, entityId) {
+  async deleteById(entityName, entityId) {
     await jsonPlaceholder.delete(`/${entityName}/${entityId}`);
 
     return true;
